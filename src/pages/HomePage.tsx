@@ -9,7 +9,8 @@ export function HomePage() {
   const images = [
     "/slide1.jpg", 
     "/slide2.jpg", 
-    "/slide3.jpg"  
+    "/slide3.jpg",
+    "/slide4.jpg"
   ];
 
   useEffect(() => {
