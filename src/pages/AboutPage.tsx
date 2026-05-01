@@ -1,4 +1,23 @@
-import { motion } from 'motion/react';
+import { motion, useMotionValue, useTransform, animate } from 'motion/react';
+import { useEffect } from 'react';
+
+function AnimatedCounter({ target, suffix = "" }: { target: number, suffix?: string }) {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, Math.round);
+  const display = useTransform(rounded, (latest) => `${latest}${suffix}`);
+
+  useEffect(() => {
+    const controls = animate(count, target, {
+      duration: 3,
+      ease: "easeOut",
+      repeat: Infinity,
+      repeatDelay: 1.5,
+    });
+    return () => controls.stop();
+  }, [count, target]);
+
+  return <motion.span>{display}</motion.span>;
+}
 
 export function AboutPage() {
   return (
@@ -35,11 +54,15 @@ export function AboutPage() {
             </p>
             <div className="grid grid-cols-2 gap-6 pb-6 border-b border-white/10">
               <div>
-                <h4 className="text-4xl font-display font-bold text-brand-400 mb-1">500+</h4>
+                <h4 className="text-4xl font-display font-bold text-brand-400 mb-1">
+                  <AnimatedCounter target={500} suffix="+" />
+                </h4>
                 <span className="text-sm text-gray-400 tracking-wider">PROJECTS DONE</span>
               </div>
               <div>
-                <h4 className="text-4xl font-display font-bold text-brand-400 mb-1">99%</h4>
+                <h4 className="text-4xl font-display font-bold text-brand-400 mb-1">
+                  <AnimatedCounter target={99} suffix="%" />
+                </h4>
                 <span className="text-sm text-gray-400 tracking-wider">HAPPY CLIENTS</span>
               </div>
             </div>

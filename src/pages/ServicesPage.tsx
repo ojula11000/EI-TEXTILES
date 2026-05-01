@@ -26,22 +26,26 @@ export function ServicesPage() {
             {
               title: "Sublimation Printing",
               desc: "Vibrant, all-over prints that never fade. Ideal for activewear, jerseys, and custom bold patterns.",
-              features: ["Edge-to-edge printing", "Breathable fabric finish", "Unlimited color options"]
+              features: ["Edge-to-edge printing", "Breathable fabric finish", "Unlimited color options"],
+              image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=800"
             },
             {
               title: "Direct-to-Film (DTF)",
               desc: "High-definition, durable prints on virtually any fabric type, including cotton, blends, and dark colors.",
-              features: ["Crisp detail", "High washability", "Versatile fabric support"]
+              features: ["Crisp detail", "High washability", "Versatile fabric support"],
+              image: "/dtf.jpg"
             },
             {
               title: "Custom Embroidery",
               desc: "Premium, textured branding for corporate wear, hats, and high-end apparel lines.",
-              features: ["3D Puff options", "Durable threads", "Professional look"]
+              features: ["3D Puff options", "Durable threads", "Professional look"],
+              image: "/embroidery.jpg"
             },
             {
               title: "Textile Sourcing",
               desc: "We source the highest quality raw materials and finished textiles to match your exact specifications.",
-              features: ["Sustainable options", "Bulk pricing", "Quality assurance"]
+              features: ["Sustainable options", "Bulk pricing", "Quality assurance"],
+              image: "/sourcing.jpg"
             }
           ].map((service, idx) => (
             <motion.div 
@@ -50,8 +54,15 @@ export function ServicesPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: false, margin: "-50px" }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="glass-panel p-8 rounded-2xl border-white/10 hover:border-brand-500/30 transition-colors group"
+              className="glass-panel p-8 rounded-2xl border-white/10 hover:border-brand-500/30 transition-colors group flex flex-col"
             >
+              <div className="w-full h-56 mb-8 rounded-xl overflow-hidden pointer-events-none border border-white/5 shadow-inner">
+                <img 
+                  src={service.image} 
+                  alt={service.title} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out" 
+                />
+              </div>
               <h3 className="text-2xl font-bold font-display text-white mb-3 group-hover:text-brand-400 transition-colors">{service.title}</h3>
               <p className="text-gray-400 mb-6 font-light leading-relaxed">{service.desc}</p>
               <ul className="space-y-3">
